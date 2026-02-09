@@ -68,3 +68,20 @@ console.log(result);
 
 // ===== Part 3: Deferred Execution ======
 
+function primeNumbers(n){
+  const displayNumbers = document.getElementById('prime-numbers');
+    if (n <= 1)
+      return "No prime numbers found";
+    if(n===2) displayNumbers.innerHtml = `<p>${n}</p>`;
+    for(let i=2; i<n; i++){
+      if(n%i == 0){
+        return "No prime numbers found";
+      }else{
+        displayNumbers.innerHtml = `<p>${n}</p>`;
+      }
+    }
+}
+
+console.log(primeNumbers(97));
+alert('Calculation is finished');
+
