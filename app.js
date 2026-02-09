@@ -66,16 +66,16 @@ console.log(result);
 
 
 // ===== Part 3: Deferred Execution ======
-function primeNumbers(n){
-  const displayNumbers = document.getElementById('prime-numbers');
+// function primeNumbers(n){
+//   const displayNumbers = document.getElementById('prime-numbers');
   
-  for(let i=2; i<=n; i++){
-      if(isPrime(i)){
-        displayNumbers.innerHTML += `<p>${i}</p>`;
-      }      
-  }
-  alert('Calculation is finished');
-}
+//   for(let i=2; i<=n; i++){
+//       if(isPrime(i)){
+//         displayNumbers.innerHTML += `<p>${i}</p>`;
+//       }      
+//   }
+  
+// }
 
 function isPrime(num){
   // Check if n=1 or n=0
@@ -94,8 +94,24 @@ function isPrime(num){
   return true;
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-  primeNumbers(97);
-});
+//Modify your function such that each number has an opportunity to render after it is calculated
+function primeNumbers(current, max){
+  if(current > max) {
+    alert('Calculation is finished');
+    return;
+  }
+
+  if (isPrime(current)) {
+    document.getElementById('prime-numbers').innerHTML += `<p>${current}</p>`;
+  }
+
+  setTimeout(()=>{
+    primeNumbers(current +1, max);
+  }, 0);  
+}
+
+primeNumbers(2, 10000);
+
+
 
 
