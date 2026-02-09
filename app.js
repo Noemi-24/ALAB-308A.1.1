@@ -1,5 +1,4 @@
 // ===== Part 1: Stack Overflow =====
-
 let counter = 0;
 
 try {
@@ -16,7 +15,6 @@ try {
 
 
 // ===== Part 2: Trampolines =====
-
 // Step One: write the recursive function.
 function flattenNestedArray(array) {
   let newArray = [];
@@ -66,22 +64,38 @@ const trampoline = (fn) => {
 const result = trampoline(flatten([1, [2, [3, 4]], 5]));
 console.log(result);
 
-// ===== Part 3: Deferred Execution ======
 
+// ===== Part 3: Deferred Execution ======
 function primeNumbers(n){
   const displayNumbers = document.getElementById('prime-numbers');
-    if (n <= 1)
-      return "No prime numbers found";
-    if(n===2) displayNumbers.innerHtml = `<p>${n}</p>`;
-    for(let i=2; i<n; i++){
-      if(n%i == 0){
-        return "No prime numbers found";
-      }else{
-        displayNumbers.innerHtml = `<p>${n}</p>`;
-      }
-    }
+  
+  for(let i=2; i<=n; i++){
+      if(isPrime(i)){
+        displayNumbers.innerHTML += `<p>${i}</p>`;
+      }      
+  }
+  alert('Calculation is finished');
 }
 
-console.log(primeNumbers(97));
-alert('Calculation is finished');
+function isPrime(num){
+  // Check if n=1 or n=0
+  if (num <= 1) return false;
+  // Check if n=2 or n=3
+  if(num == 2 || num == 3) return true;
+  // Check whether n is divisible by 2 or 3
+  if(num % 2 == 0 || num % 3 == 0) return false;
+  // Check from 5 to square root of n
+  // Iterate i by (i+6)
+  for (let i = 5; i <= Math.sqrt(num); i += 6) {
+    if (num % i == 0 || num % (i + 2) == 0)
+      return false;
+    }
+
+  return true;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  primeNumbers(97);
+});
+
 
